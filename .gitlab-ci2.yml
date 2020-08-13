@@ -8,6 +8,7 @@ variables:
   CLUSTER_NAME: gitlab-poc
   DOCKER_REGISTRY: 758596141641.dkr.ecr.us-east-1.amazonaws.com/$DEPLOYMENT_NAME
   REGION: us-east-1
+  CI_COMMIT_TAG: latest
 
 build:
   stage: build
