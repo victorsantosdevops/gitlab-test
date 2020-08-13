@@ -25,9 +25,9 @@ docker-build-master:
 .kubectl_config: &kubectl_config
   - aws eks --region $REGION update-kubeconfig --name $CLUSTER_NAME
 
-deploy:
+staging:
   image: docker.io/sulemanhasib43/eks:latest
-  stage: staging
+  stage: deploy
   variables:
     K8S_NAMESPACE: gitlab-managed-apps
   before_script: *kubectl_config
