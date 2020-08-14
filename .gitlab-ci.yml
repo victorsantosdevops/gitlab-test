@@ -25,7 +25,7 @@ docker-build-master:
 .kubectl_config: &kubectl_config
   - aws eks --region $REGION update-kubeconfig --name $CLUSTER_NAME
 
-deploy:
+deploy_staging:
   image: docker.io/sulemanhasib43/eks:latest
   stage: deploy
   variables:
@@ -36,3 +36,8 @@ deploy:
     - kubectl -n $K8S_NAMESPACE patch deployment hello-world-php -p '{"spec":{"template":{"spec":{"containers":[{"name":"'"$DEPLOYMENT_NAME"'","image":"'"$DOCKER_REGISTRY:$CI_COMMIT_TAG"'"}]}}}}'
   only:
     - tags
+  environment:
+    name: staging
+    url: http://alpha.rocketmat.com
+    only:
+      - master
